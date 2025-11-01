@@ -1,18 +1,15 @@
-// 'use client' bắt buộc ở đầu file
 "use client";
 
 import { useState, type ChangeEvent } from 'react';
 import styles from './page.module.css';
 
 export default function HomePage() {
-  // State
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string>('');
   const [noteText, setNoteText] = useState<string>('');
   const [audioUrl, setAudioUrl] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Handlers
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -29,7 +26,6 @@ export default function HomePage() {
     setIsLoading(true);
     setNoteText('');
 
-    // Giả lập backend (thay bằng API thực tế)
     console.log("Đang giả lập việc gửi ảnh đến BE...");
     await new Promise(resolve => setTimeout(resolve, 2000));
     const dummyNotes = `
@@ -49,10 +45,8 @@ Staff 1:
     setIsLoading(true);
     setAudioUrl('');
 
-    // Giả lập backend (thay bằng API thực tế)
     console.log("Đang giả lập việc gửi text nốt nhạc đến BE...");
     await new Promise(resolve => setTimeout(resolve, 3000));
-    // Đảm bảo có /public/dummy-music.mp3 nếu dùng file này
     const dummyAudioPath = '/dummy-music.mp3';
 
     setAudioUrl(dummyAudioPath);
